@@ -1,0 +1,22 @@
+# Node modules
+node_modules/
+.pnpm-store/
+
+# Assets backup folder (reference only, not needed for deployment)
+assets/
+
+# Large video files (host these on YouTube/Cloudinary instead)
+client/public/videos/water-park-home-video-aapno-ghar.mp4
+client/public/videos/Stay.mp4
+
+# Dev/test files
+*.test.tsx
+*.test.ts
+drizzle/
+patches/
+pnpm-lock.yaml
+
+# Logs & temp
+*.log
+.DS_Store
+Thumbs.db
