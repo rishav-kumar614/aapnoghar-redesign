@@ -386,13 +386,13 @@ Relax with hot tea, evening snacks, and souvenir photos before heading home.`;
       {/* Floating Glassmorphic Header */}
       <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`}>
         <button
-          className="brand"
+          className="brand py-1"
           type="button"
           onClick={() => scrollTo("top")}
           aria-label="Go to top"
           data-cursor-text="AapnoGhar"
         >
-          <img src="/images/logo.png" alt="AapnoGhar Logo" className="h-10 md:h-12 w-auto object-contain" />
+          <img src="/images/logo.png" alt="AapnoGhar Logo" className="h-13 sm:h-15 md:h-16 lg:h-[68px] w-auto object-contain drop-shadow-sm transition-transform hover:scale-105" />
         </button>
 
         {/* Desktop Navigation */}

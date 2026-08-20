@@ -60,11 +60,11 @@ export function SiteHeader({ onOpenBooking, onScrollTo }: SiteHeaderProps) {
     <>
       <header className={`site-header ${isScrolled ? "site-header--scrolled" : ""}`}>
         {/* Brand Logo */}
-        <Link href="/" className="brand" aria-label="AapnoGhar Resort Home">
+        <Link href="/" className="brand py-1" aria-label="AapnoGhar Resort Home">
           <img
             src="/images/logo.png"
             alt="AapnoGhar Resort"
-            className="h-10 md:h-12 w-auto object-contain"
+            className="h-13 sm:h-15 md:h-16 lg:h-[68px] w-auto object-contain drop-shadow-sm transition-transform hover:scale-105"
           />
         </Link>
 

@@ -97,7 +97,7 @@ html.motion-ready [data-reveal-delay="2"] { transition-delay: .08s; }
 html.motion-ready [data-reveal-delay="3"] { transition-delay: .12s; }
 html.motion-ready [data-reveal-delay="4"] { transition-delay: .16s; }
 
-.site-header { position: fixed; z-index: 40; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; height: 82px; padding: 0 max(32px, calc((100vw - 1380px)/2)); color: #fff; transition: background-color .2s ease-out, box-shadow .2s ease-out, color .2s ease-out; }
+.site-header { position: fixed; z-index: 40; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; min-height: 88px; padding: 6px max(32px, calc((100vw - 1380px)/2)); color: #fff; transition: background-color .2s ease-out, box-shadow .2s ease-out, color .2s ease-out; }
 .site-header--scrolled { color: var(--ink); background: rgba(255, 253, 249, .96); box-shadow: 0 6px 24px rgba(2, 38, 48, .11); backdrop-filter: blur(14px); }
 .brand { display: inline-flex; align-items: center; gap: 9px; background: transparent; color: inherit; cursor: pointer; padding: 0; flex-shrink: 0; }
 .brand__mark { display: grid; width: 34px; height: 34px; place-items: center; border: 2px solid currentColor; border-radius: 50% 50% 50% 8px; transform: rotate(-18deg); }
