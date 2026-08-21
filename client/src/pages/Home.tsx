@@ -22,7 +22,6 @@ import {
   X,
   Compass,
   Calculator,
-  Bot,
   ShoppingCart,
   Instagram,
   Facebook,
@@ -39,7 +38,6 @@ import { BookingModal } from "@/components/BookingModal";
 import { Preloader } from "@/components/Preloader";
 import { ResortMap } from "@/components/ResortMap";
 import { TicketEstimator } from "@/components/TicketEstimator";
-import { AIChatBox, Message } from "@/components/AIChatBox";
 import { MagneticCursor } from "@/components/MagneticCursor";
 import { AmbientParticles } from "@/components/AmbientParticles";
 import { GodlyResortHero } from "@/components/GodlyResortHero";
@@ -282,17 +280,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [isHeroHovered]);
 
-  // AI Concierge state
-  const [isAiOpen, setIsAiOpen] = useState(false);
-  const [aiLoading, setAiLoading] = useState(false);
-  const [aiMessages, setAiMessages] = useState<Message[]>([
-    {
-      role: "assistant",
-      content:
-        "Hello! 👋 Welcome to **AapnoGhar Resort & Water Park**. I am your personal AI Day-Trip Concierge. How can I assist you with tickets, stays, or wedding lawns today?",
-    },
-  ]);
-
   const locomotiveScrollTo = useLocomotiveScroll();
   useScrollReveal();
 
@@ -318,57 +305,6 @@ export default function Home() {
 
   const toggleDrawerAcc = (name: string) => {
     setOpenDrawerAcc((prev) => (prev === name ? null : name));
-  };
-
-  // Smart AI Response handler
-  const handleSendMessage = (userContent: string) => {
-    const updatedMessages: Message[] = [...aiMessages, { role: "user", content: userContent }];
-    setAiMessages(updatedMessages);
-    setAiLoading(true);
-
-    setTimeout(() => {
-      let reply = "";
-      const lower = userContent.toLowerCase();
-
-      if (lower.includes("day out") || lower.includes("plan") || lower.includes("itinerary") || lower.includes("family")) {
-        reply = `### 🌟 Custom Family Day Out Itinerary
-**09:30 AM – 10:00 AM | Arrival & Welcome Tea**  
-Check in at the main gate, pick up wristbands, and enjoy morning breakfast snacks.
-
-**10:00 AM – 01:00 PM | Water Park & Wave Pool**  
-Enjoy 21 thrill slides, giant wave pool, rain dance floor, and kid's splash zone.
-
-**01:00 PM – 02:30 PM | Grand Vegetarian Lunch Buffet**  
-Gather at Banyan Dining for a 100% pure-vegetarian royal feast.
-
-**02:30 PM – 05:00 PM | Amusement & Adventure Park**  
-Ride the Caterpillar coaster, Ferris wheel, and conquer 24 obstacle rope courses!
-
-**05:00 PM – 06:30 PM | Hi-Tea & Sunset Snacks**  
-Relax with hot tea, evening snacks, and souvenir photos before heading home.`;
-      } else if (lower.includes("timing") || lower.includes("hour") || lower.includes("stag")) {
-        reply = `### 🕒 Operating Hours & Policies
-- **Water Park:** 09:30 AM to 07:00 PM  
-- **Amusement Park:** 09:30 AM to 05:30 PM  
-- **Height Rules:** Below 33″ Free | 33″–54″ Child Ticket | Above 54″ Adult Ticket  
-- **Stag Policy:** Strictly no stag entry. AapnoGhar is a family and corporate sanctuary.`;
-      } else if (lower.includes("stay") || lower.includes("room") || lower.includes("suite")) {
-        reply = `### 🏨 Luxury Accommodation Options
-1. **Presidential Suite** (Rate on Request): 1,200 sq.ft royal suite with private living room.
-2. **Suite Room** (₹7,200/night + GST): Separate living lounge, lawn terrace.
-3. **Luxury Room** (₹6,000/night + GST): Cozy warm interior, ideal for family staycations.
-4. **Deluxe Room** (₹4,600/night + GST): Modern comfort right by the green lawns.`;
-      } else {
-        reply = `### 🎟️ AapnoGhar Full-Day Picnic Passes
-- **Weekday Adult (>54"):** ₹1,599 | **Weekday Child (33"-54"):** ₹1,299  
-- **Weekend Adult (>54"):** ₹1,799 | **Weekend Child (33"-54"):** ₹1,499  
-- **Infants (<33"):** Complimentary  
-- **Inclusions:** Water Park, Amusement Joyrides, 24 Adventure Activities, Breakfast, Buffet Lunch & Hi-Tea Snacks!`;
-      }
-
-      setAiMessages((prev) => [...prev, { role: "assistant", content: reply }]);
-      setAiLoading(false);
-    }, 850);
   };
 
   return (
@@ -1314,43 +1250,6 @@ Relax with hot tea, evening snacks, and souvenir photos before heading home.`;
           </div>
         </div>
       </footer>
-
-      {/* Floating AI Concierge Launcher */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
-        <button
-          type="button"
-          onClick={() => setIsAiOpen((prev) => !prev)}
-          className="ai-launcher-btn shadow-2xl flex items-center gap-2.5 px-5 py-3 rounded-full bg-gradient-to-r from-[#F68734] to-[#D84A22] text-white font-bold text-sm"
-          data-cursor-text="AI Concierge"
-        >
-          <Bot size={19} className="animate-pulse" />
-          <span>Ask AI Concierge</span>
-        </button>
-      </div>
-
-      {/* AI Chat Box Drawer Modal */}
-      {isAiOpen && (
-        <div className="fixed inset-0 z-[1000] flex items-end sm:items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
-          <div className="w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden border border-[#0E295B]/10 flex flex-col max-h-[85vh]">
-            <div className="p-4 bg-[#0E295B] text-white flex items-center justify-between">
-              <div className="flex items-center gap-2.5">
-                <Bot size={20} className="text-[#89D9F8]" />
-                <span className="font-bold text-sm">AapnoGhar AI Day-Trip Assistant</span>
-              </div>
-              <button type="button" onClick={() => setIsAiOpen(false)} className="text-white/70 hover:text-white">
-                <X size={20} />
-              </button>
-            </div>
-            <div className="p-4 flex-1 overflow-y-auto min-h-[320px]">
-              <AIChatBox
-                messages={aiMessages}
-                isLoading={aiLoading}
-                onSendMessage={handleSendMessage}
-              />
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Video Walkthrough Modal */}
       <VideoModal
