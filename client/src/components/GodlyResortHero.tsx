@@ -1,206 +1,301 @@
 import React from "react";
-import { Star, Landmark, Utensils, MapPin, Search } from "lucide-react";
+import { Star, Landmark, Utensils, MapPin, Search, ArrowRight } from "lucide-react";
 
 interface GodlyResortHeroProps {
   onBook: (intent: string) => void;
   onExplore: () => void;
 }
 
-// 4 Resort pillars with editorial heights matching the architectural rhythm of ONERA
 const PANELS = [
   {
     id: "waterpark",
-    title: "Water Park",
+    label: "Water Park",
+    sub: "21 Slides & Wave Pool",
     image: "/images/hero_water_park.jpg",
     intent: "Water Park Booking",
-    heightPercent: "88%",
-    topOffset: "40px",
+    height: "76%",
+    top: "48px",
   },
   {
     id: "amusement",
-    title: "Amusement",
+    label: "Amusement",
+    sub: "30+ Joyrides",
     image: "/images/amusement-park-aapno-ghar.jpg",
     intent: "Amusement Park Booking",
-    heightPercent: "98%",
-    topOffset: "0px",
+    height: "90%",
+    top: "0px",
   },
   {
-    id: "weddings",
-    title: "Banquets",
+    id: "banquets",
+    label: "Banquets",
+    sub: "2,500 Capacity",
     image: "/images/bhanwar-party-lawn.jpg",
     intent: "Wedding Enquiry",
-    heightPercent: "84%",
-    topOffset: "56px",
+    height: "82%",
+    top: "32px",
   },
   {
     id: "stay",
-    title: "Resort Stay",
+    label: "Resort Stay",
+    sub: "67 Luxury Rooms",
     image: "/images/deluxe-room-Room.jpg",
     intent: "Room Stay Booking",
-    heightPercent: "92%",
-    topOffset: "24px",
+    height: "86%",
+    top: "16px",
   },
 ];
 
 export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
   return (
     <section
-      className="relative w-full overflow-hidden select-none bg-[#FCFCFD]"
-      style={{ height: "100svh", minHeight: 640 }}
+      className="relative w-full overflow-hidden bg-[#F9F6F1] select-none"
+      style={{ height: "100svh", minHeight: 680 }}
       id="hero"
     >
-      {/* ─── UNIFIED ARCH COMPOSITION (EDITORIAL STAGGERED RHYTHM) ─── */}
-      <div 
-        className="absolute inset-0 flex items-start justify-center pt-[104px] pb-10"
-        style={{ paddingLeft: "28px", paddingRight: "28px" }}
+
+      {/* ── TOP EDITORIAL META ROW ── */}
+      <div className="absolute top-[72px] left-0 right-0 z-30 flex items-center justify-between px-8 sm:px-12 lg:px-16 pt-3">
+        {/* Left: Issue line */}
+        <p
+          className="hidden sm:block text-[10px] uppercase tracking-[0.25em] text-[#9B8E7E] font-medium"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
+          Gurugram · Est. 1996
+        </p>
+
+        {/* Center: Thin decorative rule with dot */}
+        <div className="flex-1 mx-6 sm:mx-10 flex items-center gap-2 opacity-20">
+          <div className="flex-1 h-px bg-[#2C2117]" />
+          <div className="w-1 h-1 rounded-full bg-[#D4852A]" />
+          <div className="flex-1 h-px bg-[#2C2117]" />
+        </div>
+
+        {/* Right: Tag */}
+        <p
+          className="hidden sm:block text-[10px] uppercase tracking-[0.25em] text-[#9B8E7E] font-medium"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
+          Delhi-NCR's Finest
+        </p>
+      </div>
+
+      {/* ── ARCH PANEL COMPOSITION ── */}
+      <div
+        className="absolute inset-0 flex items-start justify-center"
+        style={{ paddingTop: "108px", paddingLeft: "20px", paddingRight: "20px", paddingBottom: "100px" }}
       >
-        <div className="w-full max-w-[1520px] h-[calc(100svh-148px)] flex items-start justify-center gap-6 sm:gap-8 lg:gap-10">
-          {PANELS.map((panel) => {
-            return (
+        <div className="w-full max-w-[1440px] h-full flex items-start justify-center gap-3 sm:gap-4 lg:gap-5">
+          {PANELS.map((panel, i) => (
+            <div
+              key={panel.id}
+              className="relative flex-1 group cursor-pointer"
+              style={{ height: panel.height, marginTop: panel.top }}
+              onClick={() => onBook(panel.intent)}
+            >
+              {/* Arch container */}
               <div
-                key={panel.id}
-                className="relative flex-1 cursor-pointer group"
+                className="absolute inset-0 overflow-hidden transition-all duration-700 ease-out group-hover:shadow-[0_20px_60px_rgba(0,0,0,0.18)]"
                 style={{
-                  height: panel.heightPercent,
-                  marginTop: panel.topOffset,
+                  borderRadius: "9999px 9999px 10px 10px",
+                  maskImage: "linear-gradient(to bottom, black 0%, black 55%, rgba(0,0,0,0.6) 78%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 55%, rgba(0,0,0,0.6) 78%, transparent 100%)",
                 }}
-                onClick={() => onBook(panel.intent)}
               >
-                {/* Arch Frame */}
+                {/* Photo */}
+                <img
+                  src={panel.image}
+                  alt={panel.label}
+                  className="absolute inset-0 w-full h-full object-cover scale-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.09]"
+                  style={{ filter: "saturate(0.88) brightness(0.97)" }}
+                />
+
+                {/* Inner bottom label — visible on hover */}
                 <div
-                  className="absolute inset-0 overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] transition-all duration-700"
-                  style={{ 
-                    borderRadius: "9999px 9999px 12px 12px",
-                    // Gentle gradient mask for gradual bottom fadeout
-                    maskImage: "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.5) 80%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.5) 80%, transparent 100%)",
+                  className="absolute bottom-0 left-0 right-0 px-3 pb-4 pt-10 flex flex-col opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: "linear-gradient(to top, rgba(10,15,28,0.72) 0%, transparent 100%)",
                   }}
                 >
-                  {/* Softened, delicately toned luxury photography */}
-                  <img
-                    src={panel.image}
-                    alt={panel.title}
-                    className="absolute inset-0 w-full h-full object-cover scale-[1.02] filter blur-[0.4px] contrast-[0.94] brightness-[1.02] transition-transform duration-700 group-hover:scale-105"
-                  />
-                  
-                  {/* Subtle vertical luminance gradient: creates a calm, high-contrast field across the middle/lower-middle reading band */}
-                  <div 
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background: "linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.08) 32%, rgba(255,255,255,0.32) 50%, rgba(255,255,255,0.68) 75%, rgba(255,255,255,0.95) 100%)",
-                    }}
-                  />
+                  <span
+                    className="text-white text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] leading-none"
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
+                  >
+                    {panel.label}
+                  </span>
+                  <span
+                    className="text-white/60 text-[9px] sm:text-[10px] mt-0.5 uppercase tracking-wider"
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
+                  >
+                    {panel.sub}
+                  </span>
                 </div>
               </div>
-            );
-          })}
+
+              {/* Panel index number — editorial style */}
+              <div
+                className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[#C4B49A] text-[9px] tracking-[0.3em] font-medium select-none"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                0{i + 1}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* ─── INTEGRATED EDITORIAL TYPOGRAPHY (ONE LINE ON DESKTOP) ─── */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-25 px-4 text-center pb-8 sm:pb-12">
-        <div className="relative flex flex-col items-center justify-center max-w-[1440px] w-full">
-          
-          {/* Main Title: Sophisticated High-Contrast Serif — Stays strictly on ONE single line */}
-          <h1 
-            className="text-[#0A111E] select-none uppercase font-normal whitespace-nowrap leading-none tracking-[0.12em] sm:tracking-[0.16em] lg:tracking-[0.20em]"
-            style={{
-              fontFamily: "'Bodoni Moda', 'Playfair Display', Georgia, serif",
-              fontSize: "clamp(26px, 5.2vw, 84px)",
-              fontWeight: 700,
-              letterSpacing: "0.18em",
-            }}
+      {/* ── CENTRAL EDITORIAL TYPOGRAPHY ── */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center pointer-events-none text-center px-4"
+        style={{ paddingBottom: "80px" }}
+      >
+        {/* Overline caption */}
+        <div className="flex items-center gap-3 mb-4 sm:mb-5">
+          <div className="w-6 h-px bg-[#D4852A]" />
+          <span
+            className="text-[#D4852A] text-[9px] sm:text-[10px] uppercase tracking-[0.35em] font-semibold"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
           >
-            The City of Joy
-          </h1>
+            Aapno Ghar Resort
+          </span>
+          <div className="w-6 h-px bg-[#D4852A]" />
+        </div>
 
-          {/* Subtitle: Exquisite Flowing Italic Serif — Nested directly underneath without overlap */}
-          <p 
-            className="text-[#1A2536] leading-none mt-2.5 sm:mt-4 tracking-[-0.01em]"
+        {/* Main headline — one line, magazine serif */}
+        <h1
+          className="whitespace-nowrap leading-[0.88] select-none"
+          style={{
+            fontFamily: "'Bodoni Moda', 'Playfair Display', Georgia, serif",
+            fontSize: "clamp(30px, 6.4vw, 108px)",
+            fontWeight: 700,
+            letterSpacing: "0.08em",
+            color: "#1A0E05",
+          }}
+        >
+          The City of Joy
+        </h1>
+
+        {/* Decorative amber dot row */}
+        <div className="flex items-center gap-2 my-2.5 sm:my-3.5">
+          <div className="w-10 sm:w-16 h-px bg-[#1A0E05]/15" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[#D4852A]" />
+          <div className="w-10 sm:w-16 h-px bg-[#1A0E05]/15" />
+        </div>
+
+        {/* Subtitle — italic serif, warm tone */}
+        <p
+          className="leading-none"
+          style={{
+            fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+            fontSize: "clamp(18px, 2.8vw, 44px)",
+            fontStyle: "italic",
+            fontWeight: 500,
+            color: "#6B4F2E",
+            letterSpacing: "0.01em",
+          }}
+        >
+          made for celebration.
+        </p>
+
+        {/* CTA Row */}
+        <div className="flex items-center gap-3 mt-5 sm:mt-6 pointer-events-auto">
+          <button
+            onClick={onExplore}
+            className="flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-white text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_6px_24px_rgba(212,133,42,0.4)] hover:shadow-[0_8px_32px_rgba(212,133,42,0.55)]"
             style={{
-              fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-              fontSize: "clamp(18px, 2.6vw, 40px)",
-              fontStyle: "italic",
-              fontWeight: 600,
+              fontFamily: "'Poppins', sans-serif",
+              background: "linear-gradient(135deg, #D4852A 0%, #C0691A 100%)",
             }}
           >
-            made for celebration<span className="text-[#D4852A] not-italic font-serif font-black">.</span>
-          </p>
+            Explore Resort
+            <ArrowRight size={13} strokeWidth={2.5} />
+          </button>
+          <button
+            onClick={() => onBook("Day Pass")}
+            className="flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-[#2C1A06] text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] border border-[#2C1A06]/20 hover:border-[#D4852A]/60 hover:text-[#D4852A] transition-all duration-300 bg-white/60 backdrop-blur-sm"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            Book Day Pass
+          </button>
         </div>
       </div>
 
-      {/* ─── REFINED BOTTOM SEAMLESS FOG GRADIENT ─── */}
-      <div 
-        className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none z-20"
+      {/* ── BOTTOM AMBIENT FADE ── */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-44 pointer-events-none z-10"
         style={{
-          background: "linear-gradient(to top, #FCFCFD 0%, rgba(252,252,253,0.95) 40%, rgba(252,252,253,0.3) 78%, transparent 100%)",
-          backdropFilter: "blur(4px)",
-          WebkitBackdropFilter: "blur(4px)",
+          background: "linear-gradient(to top, #F9F6F1 0%, rgba(249,246,241,0.85) 50%, transparent 100%)",
         }}
       />
 
-      {/* ─── FLOATING PILL STATS / SEARCH BAR (HOSPITALITY EDITORIAL BAR) ─── */}
-      <div className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 z-30 w-[92%] max-w-[1260px]">
-        <div 
-          className="w-full flex items-center justify-between p-1.5 sm:p-2 rounded-full shadow-[0_12px_36px_rgba(14,21,36,0.06)] border border-black/[0.06] transition-all duration-300"
+      {/* ── FLOATING EDITORIAL INFO BAR ── */}
+      <div className="absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-[1100px]">
+        <div
+          className="w-full flex items-center rounded-full border border-[#E2D9CE] shadow-[0_8px_40px_rgba(44,26,6,0.08)]"
           style={{
-            background: "rgba(255, 255, 255, 0.96)",
-            backdropFilter: "blur(24px)",
-            WebkitBackdropFilter: "blur(24px)",
+            background: "rgba(255,255,255,0.94)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
           }}
         >
-          {/* Segment 1: Rating */}
-          <div className="flex-1 flex items-center gap-3 sm:gap-3.5 px-4 sm:px-6 py-2 border-r border-black/[0.06]">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#D4852A]/10 text-[#D4852A] flex items-center justify-center shrink-0">
-              <Star size={15} className="fill-[#D4852A]" />
+          {/* Rating */}
+          <div className="flex-1 flex items-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-3 border-r border-[#E2D9CE]">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FFF4E6] flex items-center justify-center shrink-0">
+              <Star size={13} className="fill-[#D4852A] text-[#D4852A]" />
             </div>
-            <div className="min-w-0">
-              <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#0E1524]">Rating</p>
-              <p className="text-[11px] sm:text-xs text-black/55 font-medium truncate">4.8/5 · 12k+ Reviews</p>
-            </div>
-          </div>
-
-          {/* Segment 2: Heritage */}
-          <div className="flex-1 hidden sm:flex items-center gap-3 sm:gap-3.5 px-4 sm:px-6 py-2 border-r border-black/[0.06]">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#D4852A]/10 text-[#D4852A] flex items-center justify-center shrink-0">
-              <Landmark size={15} />
-            </div>
-            <div className="min-w-0">
-              <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#0E1524]">Heritage</p>
-              <p className="text-[11px] sm:text-xs text-black/55 font-medium truncate">Since 1996 · 29+ Yrs</p>
+            <div>
+              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A0E05]"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>Rating</p>
+              <p className="text-[10px] sm:text-[11px] text-[#9B8E7E] font-medium"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>4.8 / 5 · 12k+ Reviews</p>
             </div>
           </div>
 
-          {/* Segment 3: Food */}
-          <div className="flex-1 hidden md:flex items-center gap-3 sm:gap-3.5 px-4 sm:px-6 py-2 border-r border-black/[0.06]">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#D4852A]/10 text-[#D4852A] flex items-center justify-center shrink-0">
-              <Utensils size={15} />
+          {/* Heritage */}
+          <div className="flex-1 hidden sm:flex items-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-3 border-r border-[#E2D9CE]">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FFF4E6] flex items-center justify-center shrink-0">
+              <Landmark size={13} className="text-[#D4852A]" />
             </div>
-            <div className="min-w-0">
-              <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#0E1524]">Food</p>
-              <p className="text-[11px] sm:text-xs text-black/55 font-medium truncate">100% Pure Vegetarian</p>
-            </div>
-          </div>
-
-          {/* Segment 4: Location */}
-          <div className="flex-1 flex items-center gap-3 sm:gap-3.5 px-4 sm:px-6 py-2">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#D4852A]/10 text-[#D4852A] flex items-center justify-center shrink-0">
-              <MapPin size={15} />
-            </div>
-            <div className="min-w-0">
-              <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#0E1524]">Location</p>
-              <p className="text-[11px] sm:text-xs text-black/55 font-medium truncate">NH-8, Gurugram</p>
+            <div>
+              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A0E05]"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>Heritage</p>
+              <p className="text-[10px] sm:text-[11px] text-[#9B8E7E] font-medium"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>Since 1996 · 29+ Years</p>
             </div>
           </div>
 
-          {/* Search Button (Far Right) */}
+          {/* Food */}
+          <div className="flex-1 hidden md:flex items-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-3 border-r border-[#E2D9CE]">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FFF4E6] flex items-center justify-center shrink-0">
+              <Utensils size={13} className="text-[#D4852A]" />
+            </div>
+            <div>
+              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A0E05]"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>Food</p>
+              <p className="text-[10px] sm:text-[11px] text-[#9B8E7E] font-medium"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>100% Pure Vegetarian</p>
+            </div>
+          </div>
+
+          {/* Location */}
+          <div className="flex-1 flex items-center gap-2.5 sm:gap-3 px-4 sm:px-6 py-3">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FFF4E6] flex items-center justify-center shrink-0">
+              <MapPin size={13} className="text-[#D4852A]" />
+            </div>
+            <div>
+              <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#1A0E05]"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>Location</p>
+              <p className="text-[10px] sm:text-[11px] text-[#9B8E7E] font-medium"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>NH-8, Gurugram</p>
+            </div>
+          </div>
+
+          {/* Search pill */}
           <button
-            type="button"
             onClick={onExplore}
-            aria-label="Explore resort"
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#D4852A] hover:bg-[#B85C1A] text-white flex items-center justify-center shrink-0 shadow-[0_4px_16px_rgba(212,133,42,0.35)] transition-transform hover:scale-105 active:scale-95 cursor-pointer ml-1 sm:ml-2"
+            aria-label="Explore"
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full text-white flex items-center justify-center shrink-0 mr-1.5 transition-transform duration-300 hover:scale-105 active:scale-95 shadow-[0_4px_16px_rgba(212,133,42,0.4)] cursor-pointer"
+            style={{ background: "linear-gradient(135deg, #D4852A 0%, #C0691A 100%)" }}
           >
-            <Search size={17} strokeWidth={2.5} />
+            <Search size={15} strokeWidth={2.5} />
           </button>
         </div>
       </div>
