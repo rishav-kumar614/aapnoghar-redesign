@@ -62,19 +62,19 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
                   className="absolute inset-0 overflow-hidden shadow-md"
                   style={{ borderRadius: "9999px 9999px 16px 16px" }}
                 >
-                  {/* Arch Image with soft dreamy blur & mist */}
+                  {/* Arch Image with soft atmospheric blur */}
                   <img
                     src={panel.image}
                     alt={panel.title}
-                    className="absolute inset-0 w-full h-full object-cover scale-[1.03] filter blur-[1.5px] contrast-[0.95] brightness-[1.02]"
+                    className="absolute inset-0 w-full h-full object-cover scale-[1.03] filter blur-[2px] contrast-[0.92] brightness-[1.04]"
                   />
                   
-                  {/* Subtle soft white overlay for dreamy ONERA vibe */}
-                  <div className="absolute inset-0 bg-white/10 pointer-events-none" />
+                  {/* Soft white luminescence overlay for luxury editorial look */}
+                  <div className="absolute inset-0 bg-white/20 pointer-events-none" />
 
                   {/* Soft bottom inner fade */}
                   <div 
-                    className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/40 to-transparent pointer-events-none" 
+                    className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/45 to-transparent pointer-events-none" 
                     style={{ height: "55%", top: "auto", bottom: 0 }} 
                   />
                 </div>
@@ -84,28 +84,40 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
         </div>
       </div>
 
-      {/* ─── GRAND EDITORIAL CENTER TEXT (ONERA STYLE) ─── */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-25 px-4 text-center pb-8 sm:pb-12">
-        <h1 
-          className="text-[#0E295B] tracking-[-0.03em] leading-[0.92] drop-shadow-sm transition-all duration-500"
-          style={{
-            fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-            fontSize: "clamp(42px, 7vw, 108px)",
-            fontWeight: 700,
-          }}
-        >
-          <span className="block uppercase tracking-[0.06em] text-[#0E295B] font-semibold text-[0.88em]">
-            The City of Joy,
-          </span>
-          <span 
-            className="block italic font-normal tracking-[-0.02em] text-[#0E295B] mt-1 sm:mt-2"
+      {/* ─── GRAND LUXURY EDITORIAL CENTER TYPOGRAPHY (ONERA STYLE) ─── */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-25 px-4 text-center pb-12 sm:pb-16">
+        {/* Soft subtle contrast halo behind text */}
+        <div className="relative flex flex-col items-center justify-center">
+          
+          {/* Main Headline - Spanning Wide Across Arches */}
+          <h1 
+            className="text-[#0E295B] leading-[0.88] tracking-[0.02em] select-none"
             style={{
-              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontFamily: "'Bodoni Moda', 'Italiana', 'Cormorant Garamond', Georgia, serif",
+              fontSize: "clamp(48px, 9.5vw, 136px)",
+              fontWeight: 800,
+              textShadow: "0 4px 30px rgba(255,255,255,0.85), 0 1px 3px rgba(0,0,0,0.12)",
             }}
           >
-            made for celebration<span className="text-[#D4852A] font-serif not-italic">.</span>
-          </span>
-        </h1>
+            <span className="block uppercase tracking-[0.08em]">
+              The City of Joy,
+            </span>
+          </h1>
+
+          {/* Subtitle - Exquisite High-Fashion Italic Script */}
+          <p 
+            className="text-[#0E295B] leading-none mt-2 sm:mt-4 tracking-[-0.01em]"
+            style={{
+              fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+              fontSize: "clamp(26px, 4.2vw, 56px)",
+              fontStyle: "italic",
+              fontWeight: 600,
+              textShadow: "0 2px 20px rgba(255,255,255,0.9)",
+            }}
+          >
+            made for celebration<span className="text-[#D4852A] not-italic font-serif">.</span>
+          </p>
+        </div>
       </div>
 
       {/* ─── DREAMY BOTTOM FOG / BLUR EFFECT ─── */}
