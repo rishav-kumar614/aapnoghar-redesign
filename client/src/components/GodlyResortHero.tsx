@@ -13,7 +13,6 @@ const PANELS = [
     title: "Water Park",
     image: "/images/hero_water_park.jpg",
     intent: "Water Park Booking",
-    // Arch 1: Medium-High architectural arch
     heightPercent: "88%",
     topOffset: "40px",
   },
@@ -22,7 +21,6 @@ const PANELS = [
     title: "Amusement",
     image: "/images/amusement-park-aapno-ghar.jpg",
     intent: "Amusement Park Booking",
-    // Arch 2: The Pinnacle tallest arch
     heightPercent: "98%",
     topOffset: "0px",
   },
@@ -31,7 +29,6 @@ const PANELS = [
     title: "Banquets",
     image: "/images/bhanwar-party-lawn.jpg",
     intent: "Wedding Enquiry",
-    // Arch 3: Lower elegant contrast arch
     heightPercent: "84%",
     topOffset: "56px",
   },
@@ -40,7 +37,6 @@ const PANELS = [
     title: "Resort Stay",
     image: "/images/deluxe-room-Room.jpg",
     intent: "Room Stay Booking",
-    // Arch 4: High balanced arch
     heightPercent: "92%",
     topOffset: "24px",
   },
@@ -72,23 +68,28 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
               >
                 {/* Arch Frame */}
                 <div
-                  className="absolute inset-0 overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-black/[0.04] transition-all duration-700"
+                  className="absolute inset-0 overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.03)] border border-black/[0.03] transition-all duration-700"
                   style={{ 
                     borderRadius: "9999px 9999px 12px 12px",
-                    // Gentle gradient mask for gradual natural bottom fadeout
-                    maskImage: "linear-gradient(to bottom, black 0%, black 62%, rgba(0,0,0,0.4) 84%, transparent 100%)",
-                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 62%, rgba(0,0,0,0.4) 84%, transparent 100%)",
+                    // Gentle gradient mask for gradual bottom fadeout
+                    maskImage: "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.5) 80%, transparent 100%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 58%, rgba(0,0,0,0.5) 80%, transparent 100%)",
                   }}
                 >
                   {/* Softened, delicately toned luxury photography */}
                   <img
                     src={panel.image}
                     alt={panel.title}
-                    className="absolute inset-0 w-full h-full object-cover scale-[1.02] filter blur-[0.6px] contrast-[0.96] brightness-[1.01] transition-transform duration-700 group-hover:scale-105"
+                    className="absolute inset-0 w-full h-full object-cover scale-[1.02] filter blur-[0.4px] contrast-[0.94] brightness-[1.02] transition-transform duration-700 group-hover:scale-105"
                   />
                   
-                  {/* Subtle warm luminescence overlay */}
-                  <div className="absolute inset-0 bg-[#FCFCFD]/10 pointer-events-none" />
+                  {/* Subtle vertical luminance gradient: creates a calm, high-contrast field across the middle/lower-middle reading band */}
+                  <div 
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: "linear-gradient(to bottom, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.08) 32%, rgba(255,255,255,0.32) 50%, rgba(255,255,255,0.68) 75%, rgba(255,255,255,0.95) 100%)",
+                    }}
+                  />
                 </div>
               </div>
             );
@@ -96,32 +97,31 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
         </div>
       </div>
 
-      {/* ─── INTEGRATED EDITORIAL TYPOGRAPHY (ONERA EDITORIAL STATEMENT) ─── */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-25 px-4 text-center pb-12 sm:pb-16">
-        <div className="relative flex flex-col items-center justify-center max-w-5xl">
+      {/* ─── INTEGRATED EDITORIAL TYPOGRAPHY (ONE LINE ON DESKTOP) ─── */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-25 px-4 text-center pb-8 sm:pb-12">
+        <div className="relative flex flex-col items-center justify-center max-w-[1440px] w-full">
           
-          {/* Main Title: Sophisticated High-Contrast Serif */}
+          {/* Main Title: Sophisticated High-Contrast Serif — Stays strictly on ONE single line */}
           <h1 
-            className="text-[#0E1524] tracking-[0.14em] leading-[0.9] select-none uppercase font-normal"
+            className="text-[#0A111E] select-none uppercase font-normal whitespace-nowrap leading-none tracking-[0.12em] sm:tracking-[0.16em] lg:tracking-[0.20em]"
             style={{
-              fontFamily: "'Bodoni Moda', 'Playfair Display', 'Italiana', Georgia, serif",
-              fontSize: "clamp(36px, 7.6vw, 116px)",
-              letterSpacing: "0.14em",
-              textShadow: "0 4px 28px rgba(255, 255, 255, 0.95), 0 0 50px rgba(255, 255, 255, 0.8)",
+              fontFamily: "'Bodoni Moda', 'Playfair Display', Georgia, serif",
+              fontSize: "clamp(26px, 5.2vw, 84px)",
+              fontWeight: 700,
+              letterSpacing: "0.18em",
             }}
           >
             The City of Joy
           </h1>
 
-          {/* Subtitle: Exquisite Flowing Italic Serif */}
+          {/* Subtitle: Exquisite Flowing Italic Serif — Nested directly underneath without overlap */}
           <p 
-            className="text-[#1A2536] leading-none mt-2 sm:mt-3.5 tracking-[-0.01em]"
+            className="text-[#1A2536] leading-none mt-2.5 sm:mt-4 tracking-[-0.01em]"
             style={{
               fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-              fontSize: "clamp(22px, 3.8vw, 50px)",
+              fontSize: "clamp(18px, 2.6vw, 40px)",
               fontStyle: "italic",
               fontWeight: 600,
-              textShadow: "0 2px 20px rgba(255, 255, 255, 0.95)",
             }}
           >
             made for celebration<span className="text-[#D4852A] not-italic font-serif font-black">.</span>
