@@ -40,15 +40,13 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
       style={{ height: "100svh", minHeight: 620, background: "#FFFFFF" }}
       id="hero"
     >
-      {/* ─── FOUR ARCH PANELS — staggered heights with clean gap below navbar ─── */}
+      {/* ─── FOUR ARCH PANELS — softly blurred with atmospheric mist ─── */}
       <div 
         className="absolute inset-0 flex items-center justify-center pt-[96px] pb-12"
         style={{ paddingLeft: "12px", paddingRight: "12px" }}
       >
         <div className="w-full max-w-[1580px] h-[calc(100svh-140px)] flex items-center justify-center gap-[28px]">
           {PANELS.map((panel, idx) => {
-            // idx 1 (2nd) & idx 3 (4th) -> taller (+25px)
-            // idx 0 (1st) & idx 2 (3rd) -> shorter (-25px)
             const isTall = idx === 1 || idx === 3;
             return (
               <div
@@ -64,21 +62,50 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
                   className="absolute inset-0 overflow-hidden shadow-md"
                   style={{ borderRadius: "9999px 9999px 16px 16px" }}
                 >
+                  {/* Arch Image with soft dreamy blur & mist */}
                   <img
                     src={panel.image}
                     alt={panel.title}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover scale-[1.03] filter blur-[1.5px] contrast-[0.95] brightness-[1.02]"
                   />
+                  
+                  {/* Subtle soft white overlay for dreamy ONERA vibe */}
+                  <div className="absolute inset-0 bg-white/10 pointer-events-none" />
+
                   {/* Soft bottom inner fade */}
                   <div 
                     className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/40 to-transparent pointer-events-none" 
-                    style={{ height: "50%", top: "auto", bottom: 0 }} 
+                    style={{ height: "55%", top: "auto", bottom: 0 }} 
                   />
                 </div>
               </div>
             );
           })}
         </div>
+      </div>
+
+      {/* ─── GRAND EDITORIAL CENTER TEXT (ONERA STYLE) ─── */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-25 px-4 text-center pb-8 sm:pb-12">
+        <h1 
+          className="text-[#0E295B] tracking-[-0.03em] leading-[0.92] drop-shadow-sm transition-all duration-500"
+          style={{
+            fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
+            fontSize: "clamp(42px, 7vw, 108px)",
+            fontWeight: 700,
+          }}
+        >
+          <span className="block uppercase tracking-[0.06em] text-[#0E295B] font-semibold text-[0.88em]">
+            The City of Joy,
+          </span>
+          <span 
+            className="block italic font-normal tracking-[-0.02em] text-[#0E295B] mt-1 sm:mt-2"
+            style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+            }}
+          >
+            made for celebration<span className="text-[#D4852A] font-serif not-italic">.</span>
+          </span>
+        </h1>
       </div>
 
       {/* ─── DREAMY BOTTOM FOG / BLUR EFFECT ─── */}
