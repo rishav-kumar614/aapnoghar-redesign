@@ -85,37 +85,44 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
       </div>
 
       {/* ─── GRAND LUXURY EDITORIAL CENTER TYPOGRAPHY (ONERA STYLE) ─── */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-25 px-4 text-center pb-12 sm:pb-16">
+      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-25 px-4 text-center pb-10 sm:pb-14">
         {/* Soft subtle contrast halo behind text */}
-        <div className="relative flex flex-col items-center justify-center">
-          
-          {/* Main Headline - Spanning Wide Across Arches */}
+        <div 
+          className="relative flex flex-col items-center justify-center py-4 px-6 sm:px-12 rounded-3xl"
+          style={{
+            background: "radial-gradient(ellipse at center, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 75%)",
+          }}
+        >
+          {/* Main Headline - Deep Obsidian Black with Crisp Contrast */}
           <h1 
-            className="text-[#0E295B] leading-[0.88] tracking-[0.02em] select-none"
+            className="text-[#111827] leading-[0.88] select-none"
             style={{
-              fontFamily: "'Bodoni Moda', 'Italiana', 'Cormorant Garamond', Georgia, serif",
-              fontSize: "clamp(48px, 9.5vw, 136px)",
+              fontFamily: "'Playfair Display', 'Bodoni Moda', 'Italiana', Georgia, serif",
+              fontSize: "clamp(46px, 8.8vw, 128px)",
               fontWeight: 800,
-              textShadow: "0 4px 30px rgba(255,255,255,0.85), 0 1px 3px rgba(0,0,0,0.12)",
+              letterSpacing: "0.06em",
+              color: "#0B1320",
+              textShadow: "0 2px 16px rgba(255, 255, 255, 0.95), 0 0 35px rgba(255, 255, 255, 0.8)",
             }}
           >
-            <span className="block uppercase tracking-[0.08em]">
+            <span className="block uppercase">
               The City of Joy,
             </span>
           </h1>
 
-          {/* Subtitle - Exquisite High-Fashion Italic Script */}
+          {/* Subtitle - Elegant Luxury Italic Script */}
           <p 
-            className="text-[#0E295B] leading-none mt-2 sm:mt-4 tracking-[-0.01em]"
+            className="leading-none mt-2 sm:mt-4 tracking-[0.02em]"
             style={{
               fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-              fontSize: "clamp(26px, 4.2vw, 56px)",
+              fontSize: "clamp(24px, 3.8vw, 52px)",
               fontStyle: "italic",
-              fontWeight: 600,
-              textShadow: "0 2px 20px rgba(255,255,255,0.9)",
+              fontWeight: 700,
+              color: "#1E293B",
+              textShadow: "0 2px 14px rgba(255, 255, 255, 0.95)",
             }}
           >
-            made for celebration<span className="text-[#D4852A] not-italic font-serif">.</span>
+            made for celebration<span className="text-[#D4852A] not-italic font-serif font-black">.</span>
           </p>
         </div>
       </div>
