@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Star, Landmark, Utensils, MapPin, Search, ArrowRight } from "lucide-react";
 
 interface GodlyResortHeroProps {
@@ -46,6 +46,14 @@ const PANELS = [
 ];
 
 export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => {
+      setTimeout(() => setMounted(true), 60);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, []);
   return (
     <section
       className="relative w-full overflow-hidden bg-[#FAF7F3] flex flex-col select-none"
@@ -133,16 +141,25 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
         className="relative z-10 flex items-end justify-center flex-1 min-h-0"
         style={{ paddingLeft: "20px", paddingRight: "20px", paddingBottom: "76px", gap: "14px" }}
       >
-        {PANELS.map((panel, i) => (
+        {PANELS.map((panel, i) => {
+          // Panels 1&3 (index 0,2) come first → 0ms delay
+          // Panels 2&4 (index 1,3) follow → 200ms delay
+          const delay = (i === 0 || i === 2) ? 0 : 200;
+          return (
           <div
             key={panel.id}
-            className="relative group cursor-pointer flex-1"
-            style={{ height: `${panel.heightVh}vh` }}
+            className="relative flex-1"
+            style={{
+              height: `${panel.heightVh}vh`,
+              transform: mounted ? "translateY(0px)" : "translateY(80px)",
+              opacity: mounted ? 1 : 0,
+              transition: `transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, opacity 0.75s ease ${delay}ms`,
+            }}
             onClick={() => onBook(panel.intent)}
           >
             {/* Arch frame */}
             <div
-              className="absolute inset-0 overflow-hidden shadow-[0_12px_40px_rgba(23,14,4,0.10)] border border-black/[0.04] transition-shadow duration-500 group-hover:shadow-[0_18px_56px_rgba(23,14,4,0.16)]"
+              className="absolute inset-0 overflow-hidden shadow-[0_12px_40px_rgba(23,14,4,0.10)] border border-black/[0.04]"
               style={{
                 borderRadius: "9999px 9999px 10px 10px",
                 maskImage: "linear-gradient(to bottom, black 0%, black 60%, rgba(0,0,0,0.5) 82%, transparent 100%)",
@@ -153,30 +170,11 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
               <img
                 src={panel.image}
                 alt={panel.label}
-                className="absolute inset-0 w-full h-full object-cover scale-[1.05] transition-transform duration-700 ease-out group-hover:scale-[1.10]"
+                className="absolute inset-0 w-full h-full object-cover scale-[1.05]"
                 style={{ filter: "saturate(0.92) brightness(0.97)" }}
               />
 
-              {/* Bottom label — appears on hover */}
-              <div
-                className="absolute bottom-0 left-0 right-0 px-3 pb-4 pt-12 flex flex-col gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-                style={{
-                  background: "linear-gradient(to top, rgba(10,14,28,0.80) 0%, transparent 100%)",
-                }}
-              >
-                <span
-                  className="text-white text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.2em]"
-                  style={{ fontFamily: "'Poppins', sans-serif" }}
-                >
-                  {panel.label}
-                </span>
-                <span
-                  className="text-white/55 text-[8px] sm:text-[9px] uppercase tracking-widest"
-                  style={{ fontFamily: "'Poppins', sans-serif" }}
-                >
-                  {panel.sub}
-                </span>
-              </div>
+
             </div>
 
             {/* Panel index */}
@@ -187,7 +185,8 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
               0{i + 1}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* ═══════════════════════════════════════════
