@@ -1,241 +1,187 @@
-import React, { useState, useEffect } from "react";
-import { Star, Landmark, Utensils, MapPin, Search, ArrowRight } from "lucide-react";
+import React, { useState } from "react";
+import { Sparkles, ArrowUpRight, Ticket, Star, ChevronDown, Waves, Compass } from "lucide-react";
 
 interface GodlyResortHeroProps {
   onBook: (intent: string) => void;
   onExplore: () => void;
 }
 
-const PANELS = [
+const EXPERIENCES = [
   {
     id: "waterpark",
-    label: "Water Park",
-    sub: "21 Slides & Wave Pool",
+    title: "Water Park",
+    badge: "21 Slides & Wave Pool",
+    rate: "From ₹1,299",
     image: "/images/hero_water_park.jpg",
     intent: "Water Park Booking",
-    heightVh: 52,
-    delay: "0ms",
+    desc: "Delhi-NCR's largest wave pool & turbo slides with full-course vegetarian buffet."
   },
   {
     id: "amusement",
-    label: "Amusement",
-    sub: "30+ Joyrides",
+    title: "Amusement Rides",
+    badge: "15+ Joyrides",
+    rate: "All-Day Fun",
     image: "/images/amusement-park-aapno-ghar.jpg",
     intent: "Amusement Park Booking",
-    heightVh: 60,
-    delay: "60ms",
+    desc: "Caterpillar coaster, flying bob, carnival swings & 24 adventure obstacle courses."
   },
   {
-    id: "banquets",
-    label: "Banquets",
-    sub: "2,500 Capacity",
-    image: "/images/bhanwar-party-lawn.jpg",
+    id: "weddings",
+    title: "Royal Banquets",
+    badge: "2,500 Capacity",
+    rate: "4 Grand Lawns",
+    image: "/images/img3.jpg",
     intent: "Wedding Enquiry",
-    heightVh: 55,
-    delay: "120ms",
+    desc: "Starlit Chander Lawn, Bhanwar Lawn & climate-controlled Abhinandan Banquet."
   },
   {
     id: "stay",
-    label: "Resort Stay",
-    sub: "67 Luxury Rooms",
+    title: "Resort Stay",
+    badge: "67 Luxury Rooms",
+    rate: "From ₹4,600/n",
     image: "/images/deluxe-room-Room.jpg",
     intent: "Room Stay Booking",
-    heightVh: 58,
-    delay: "180ms",
-  },
+    desc: "Spacious presidential suites, lawn balconies, peaceful greenery & 24/7 service."
+  }
 ];
 
 export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
-  const [mounted, setMounted] = useState(false);
+  const [activeExp, setActiveExp] = useState(EXPERIENCES[0]);
 
-  useEffect(() => {
-    const raf = requestAnimationFrame(() => {
-      setTimeout(() => setMounted(true), 60);
-    });
-    return () => cancelAnimationFrame(raf);
-  }, []);
   return (
-    <section
-      className="relative w-full overflow-hidden bg-[#FAF7F3] flex flex-col select-none"
-      style={{ height: "100svh", minHeight: 680 }}
-      id="hero"
-    >
-      {/* ═══════════════════════════════════════════
-          TOP TEXT ZONE — clear cream background
-          Sits entirely above the arch images
-      ═══════════════════════════════════════════ */}
-      <div className="relative z-20 flex flex-col items-center justify-end text-center pt-[88px] pb-6 sm:pb-7 px-6 flex-shrink-0">
-
-        {/* Overline */}
-        <div className="flex items-center gap-3 mb-3 sm:mb-4">
-          <div className="w-8 sm:w-12 h-px bg-[#D4852A]" />
-          <span
-            className="text-[#D4852A] text-[9px] sm:text-[10px] uppercase tracking-[0.32em] font-semibold"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
-          >
-            Aapno Ghar · Since 1996
-          </span>
-          <div className="w-8 sm:w-12 h-px bg-[#D4852A]" />
-        </div>
-
-        {/* Headline — completely on cream background, perfectly readable */}
-        <h1
-          className="whitespace-nowrap leading-[0.9] text-[#170E04]"
-          style={{
-            fontFamily: "'Bodoni Moda', 'Playfair Display', Georgia, serif",
-            fontSize: "clamp(32px, 6.8vw, 112px)",
-            fontWeight: 700,
-            letterSpacing: "0.07em",
-          }}
-        >
-          The City of Joy
-        </h1>
-
-        {/* Thin amber rule */}
-        <div className="flex items-center gap-2.5 my-2.5 sm:my-3">
-          <div className="w-12 sm:w-20 h-px bg-[#170E04]/12" />
-          <div className="w-1.5 h-1.5 rounded-full bg-[#D4852A]" />
-          <div className="w-12 sm:w-20 h-px bg-[#170E04]/12" />
-        </div>
-
-        {/* Subtitle */}
-        <p
-          className="leading-none text-[#7A5535]"
-          style={{
-            fontFamily: "'Cormorant Garamond', 'Playfair Display', Georgia, serif",
-            fontSize: "clamp(17px, 2.6vw, 42px)",
-            fontStyle: "italic",
-            fontWeight: 500,
-            letterSpacing: "0.01em",
-          }}
-        >
-          made for celebration.
-        </p>
-
-        {/* CTA Row */}
-        <div className="flex items-center gap-3 mt-4 sm:mt-5">
-          <button
-            onClick={onExplore}
-            className="flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-white text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_6px_22px_rgba(212,133,42,0.38)]"
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              background: "linear-gradient(135deg, #D4852A 0%, #BE6518 100%)",
-            }}
-          >
-            Explore Resort <ArrowRight size={12} strokeWidth={2.5} />
-          </button>
-          <button
-            onClick={() => onBook("Day Pass")}
-            className="flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-[#2C1A06] text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.18em] border border-[#2C1A06]/18 hover:border-[#D4852A]/50 hover:text-[#D4852A] transition-all duration-300 bg-white/70 backdrop-blur-sm"
-            style={{ fontFamily: "'Poppins', sans-serif" }}
-          >
-            Book Day Pass
-          </button>
-        </div>
-      </div>
-
-      {/* ═══════════════════════════════════════════
-          ARCH PANEL ROW — fills remaining height
-      ═══════════════════════════════════════════ */}
+    <section className="relative h-screen min-h-[100vh] w-full flex flex-col justify-between pt-24 pb-6 px-4 sm:px-8 bg-[#061A33] overflow-hidden text-white select-none" id="hero">
+      {/* Background Soft-Focus Atmosphere with Dynamic Crossfade */}
       <div
-        className="relative z-10 flex items-end justify-center flex-1 min-h-0"
-        style={{ paddingLeft: "20px", paddingRight: "20px", paddingBottom: "76px", gap: "14px" }}
-      >
-        {PANELS.map((panel, i) => {
-          // Panels 1&3 (index 0,2) come first → 0ms delay
-          // Panels 2&4 (index 1,3) follow → 200ms delay
-          const delay = (i === 0 || i === 2) ? 0 : 200;
-          return (
-          <div
-            key={panel.id}
-            className="relative flex-1"
-            style={{
-              height: `${panel.heightVh}vh`,
-              transform: mounted ? "translateY(0px)" : "translateY(80px)",
-              opacity: mounted ? 1 : 0,
-              transition: `transform 0.75s cubic-bezier(0.22, 1, 0.36, 1) ${delay}ms, opacity 0.75s ease ${delay}ms`,
-            }}
-            onClick={() => onBook(panel.intent)}
-          >
-            {/* Arch frame */}
-            <div
-              className="absolute inset-0 overflow-hidden shadow-[0_12px_40px_rgba(23,14,4,0.10)] border border-black/[0.04]"
-              style={{
-                borderRadius: "9999px 9999px 10px 10px",
-                maskImage: "linear-gradient(to bottom, black 0%, black 60%, rgba(0,0,0,0.5) 82%, transparent 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 60%, rgba(0,0,0,0.5) 82%, transparent 100%)",
-              }}
+        className="absolute inset-0 bg-cover bg-center transition-all duration-1000 transform scale-105 opacity-40"
+        style={{ backgroundImage: `url(${activeExp.image})` }}
+      />
+
+      {/* Layered Editorial Gradient Scrims */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#061A33] via-[#061A33]/75 to-[#061A33]/50" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(1,165,225,0.18),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(246,135,52,0.18),transparent_60%)]" />
+
+      {/* Main Editorial Hero Layout (Centered Vertically) */}
+      <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10 my-auto">
+        {/* Left Column: Bold Typographic Statement (7 Cols) */}
+        <div className="lg:col-span-7 flex flex-col items-start text-left">
+          {/* Status Chip */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-semibold text-white mb-4 sm:mb-6 shadow-xl">
+            <span className="w-2 h-2 rounded-full bg-[#69B32D] animate-pulse" />
+            <span className="text-[#89D9F8] font-bold">Open Today 09:30 AM – 07:00 PM</span>
+            <span className="opacity-40">•</span>
+            <span className="text-white/80">NH-8 Gurugram</span>
+          </div>
+
+          {/* Editorial Headline */}
+          <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black font-display tracking-tight leading-[1.06] text-white mb-4 sm:mb-6">
+            The city of joy,{" "}
+            <span className="italic font-serif font-normal text-transparent bg-clip-text bg-gradient-to-r from-[#FFA96B] via-[#F68734] to-[#01A5E1]">
+              made for celebration.
+            </span>
+          </h1>
+
+          <p className="text-white/85 text-sm sm:text-lg lg:text-xl font-normal leading-relaxed max-w-xl mb-6 sm:mb-8">
+            Delhi-NCR's premier 9-acre destination bringing together 21 thrill water slides, carnival joyrides, starlit wedding lawns, and 67 peaceful resort rooms.
+          </p>
+
+          {/* Action CTA Buttons */}
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6">
+            <button
+              type="button"
+              onClick={() => onBook(activeExp.intent)}
+              className="px-7 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-[#F68734] hover:bg-[#D84A22] text-white font-extrabold text-xs sm:text-sm md:text-base shadow-[0_0_35px_rgba(246,135,52,0.6)] hover:shadow-[0_0_45px_rgba(246,135,52,0.85)] transition-all duration-300 flex items-center gap-2 transform active:scale-95"
+              data-cursor-text="Book Pass"
             >
-              {/* Photo */}
+              <Ticket size={18} /> Book Day Pass — ₹1,299
+            </button>
+
+            <button
+              type="button"
+              onClick={onExplore}
+              className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm md:text-base backdrop-blur-md border border-white/20 transition-all duration-300 flex items-center gap-2"
+              data-cursor-text="Explore"
+            >
+              Explore Resort Grounds <ArrowUpRight size={17} />
+            </button>
+          </div>
+        </div>
+
+        {/* Right Column: Interactive Framed Destination Deck (5 Cols) */}
+        <div className="lg:col-span-5 flex flex-col items-center lg:items-end">
+          <div className="w-full max-w-md bg-[#061A33]/85 backdrop-blur-2xl rounded-3xl p-5 border border-white/20 shadow-2xl overflow-hidden">
+            {/* Framed Image Showcase */}
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-black/30 group">
               <img
-                src={panel.image}
-                alt={panel.label}
-                className="absolute inset-0 w-full h-full object-cover scale-[1.05]"
-                style={{ filter: "saturate(0.92) brightness(0.97)" }}
+                key={activeExp.id}
+                src={activeExp.image}
+                alt={activeExp.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-
-
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent flex flex-col justify-end p-5">
+                <span className="px-3 py-1 rounded-full bg-[#01A5E1] text-white text-[11px] font-extrabold uppercase tracking-wider self-start mb-1 shadow-md">
+                  {activeExp.rate}
+                </span>
+                <h3 className="text-xl font-bold text-white font-display leading-tight">
+                  {activeExp.title}
+                </h3>
+                <p className="text-xs text-white/80 line-clamp-1 mt-0.5">
+                  {activeExp.desc}
+                </p>
+              </div>
             </div>
 
-            {/* Panel index */}
-            <div
-              className="absolute -bottom-5 left-1/2 -translate-x-1/2 text-[#C4B49A]/70 text-[8px] tracking-[0.3em] font-medium"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              0{i + 1}
+            {/* 4 Interactive Selector Tabs */}
+            <div className="grid grid-cols-2 gap-2">
+              {EXPERIENCES.map((exp) => {
+                const isSelected = activeExp.id === exp.id;
+                return (
+                  <button
+                    key={exp.id}
+                    type="button"
+                    onClick={() => setActiveExp(exp)}
+                    className={`p-2.5 rounded-xl text-left transition-all duration-300 border flex flex-col ${
+                      isSelected
+                        ? "bg-white/20 border-[#F68734] shadow-md"
+                        : "bg-white/5 border-white/10 hover:bg-white/10 text-white/70 hover:text-white"
+                    }`}
+                  >
+                    <span className="text-xs font-bold text-white truncate">
+                      {exp.title}
+                    </span>
+                    <span className="text-[10px] text-white/60 truncate">
+                      {exp.badge}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
-          );
-        })}
+        </div>
       </div>
 
-      {/* ═══════════════════════════════════════════
-          BOTTOM FLOATING INFO BAR
-      ═══════════════════════════════════════════ */}
-      <div className="absolute bottom-4 sm:bottom-5 left-1/2 -translate-x-1/2 z-30 w-[90%] max-w-[1060px]">
-        <div
-          className="w-full flex items-center rounded-full border border-[#E5DDD3] shadow-[0_6px_32px_rgba(23,14,4,0.07)]"
-          style={{
-            background: "rgba(255,255,255,0.95)",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
-          }}
-        >
-          {[
-            { icon: <Star size={13} className="fill-[#D4852A] text-[#D4852A]" />, label: "Rating", val: "4.8 / 5 · 12k+ Reviews" },
-            { icon: <Landmark size={13} className="text-[#D4852A]" />, label: "Heritage", val: "Since 1996 · 29+ Years", hide: "sm" },
-            { icon: <Utensils size={13} className="text-[#D4852A]" />, label: "Food", val: "100% Pure Vegetarian", hide: "md" },
-            { icon: <MapPin size={13} className="text-[#D4852A]" />, label: "Location", val: "NH-8, Gurugram" },
-          ].map((item, i, arr) => (
-            <div
-              key={item.label}
-              className={`flex-1 flex items-center gap-2.5 px-4 sm:px-5 py-2.5 ${i < arr.length - 1 ? "border-r border-[#E5DDD3]" : ""} ${item.hide === "sm" ? "hidden sm:flex" : item.hide === "md" ? "hidden md:flex" : "flex"}`}
-            >
-              <div className="w-7 h-7 rounded-full bg-[#FFF4E6] flex items-center justify-center shrink-0">
-                {item.icon}
-              </div>
-              <div className="min-w-0">
-                <p className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#170E04]"
-                  style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  {item.label}
-                </p>
-                <p className="text-[9px] sm:text-[10px] text-[#9B8E7E] font-medium truncate"
-                  style={{ fontFamily: "'Poppins', sans-serif" }}>
-                  {item.val}
-                </p>
-              </div>
-            </div>
-          ))}
-
-          <button
-            onClick={onExplore}
-            aria-label="Explore"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full text-white flex items-center justify-center shrink-0 mr-1.5 transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_3px_12px_rgba(212,133,42,0.4)] cursor-pointer"
-            style={{ background: "linear-gradient(135deg, #D4852A 0%, #BE6518 100%)" }}
-          >
-            <Search size={14} strokeWidth={2.5} />
-          </button>
+      {/* Floating Bottom Full-Width Bar with Scroll Indicator */}
+      <div className="max-w-7xl mx-auto w-full relative z-20 flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-white/10 text-xs text-white/75 font-semibold">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-1.5 text-white">
+            <Star size={14} className="fill-[#FFA96B] text-[#FFA96B]" />
+            <span className="font-extrabold">4.8 / 5</span>
+            <span className="text-white/60 font-normal">(12,000+ Reviews)</span>
+          </div>
+          <span className="hidden sm:inline opacity-30">•</span>
+          <span>29+ Years Heritage</span>
+          <span className="hidden sm:inline opacity-30">•</span>
+          <span>100% Pure Vegetarian Feasts</span>
         </div>
+
+        <button
+          type="button"
+          onClick={onExplore}
+          className="flex items-center gap-1 text-white/60 hover:text-white transition-colors cursor-pointer group"
+        >
+          <span>Scroll to explore</span>
+          <ChevronDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
+        </button>
       </div>
     </section>
   );
