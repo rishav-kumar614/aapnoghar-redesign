@@ -39,12 +39,12 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
       style={{ height: "100svh", minHeight: 600, background: "#FFFFFF" }}
       id="hero"
     >
-      {/* ─── FOUR ARCH PANELS — staggered heights (+25px / -25px), custom gap & refined width ─── */}
+      {/* ─── FOUR ARCH PANELS — staggered heights with clean gap below navbar ─── */}
       <div 
-        className="absolute inset-0 flex items-center justify-center pt-[80px] pb-4"
+        className="absolute inset-0 flex items-center justify-center pt-[98px] pb-4"
         style={{ paddingLeft: "12px", paddingRight: "12px" }}
       >
-        <div className="w-full max-w-[1580px] h-[calc(100svh-110px)] flex items-center justify-center gap-[28px]">
+        <div className="w-full max-w-[1580px] h-[calc(100svh-128px)] flex items-center justify-center gap-[28px]">
           {PANELS.map((panel, idx) => {
             // idx 1 (2nd) & idx 3 (4th) -> taller (+25px)
             // idx 0 (1st) & idx 2 (3rd) -> shorter (-25px)
