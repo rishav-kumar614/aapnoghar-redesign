@@ -93,57 +93,57 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
         }}
       />
 
-      {/* ─── FLOATING PILL STATS / SEARCH BAR (ONERA Style) ─── */}
-      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 w-[94%] max-w-4xl">
+      {/* ─── FLOATING PILL STATS / SEARCH BAR (ONERA Style — Wide Span) ─── */}
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 w-[94%] max-w-[1360px]">
         <div 
-          className="w-full flex items-center justify-between p-2 sm:p-2.5 rounded-full shadow-[0_12px_36px_rgba(0,0,0,0.09)] border border-black/5 transition-all duration-300"
+          className="w-full flex items-center justify-between p-2 sm:p-3 rounded-full shadow-[0_16px_44px_rgba(0,0,0,0.08)] border border-black/5 transition-all duration-300"
           style={{
             background: "rgba(255, 255, 255, 0.94)",
-            backdropFilter: "blur(16px)",
-            WebkitBackdropFilter: "blur(16px)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
           }}
         >
           {/* Segment 1: Rating */}
-          <div className="flex-1 flex items-center gap-3 px-3.5 sm:px-5 py-1.5 border-r border-black/[0.07]">
-            <div className="w-8 h-8 rounded-full bg-[#D4852A]/15 text-[#D4852A] flex items-center justify-center shrink-0">
-              <Star size={15} className="fill-[#D4852A]" />
+          <div className="flex-1 flex items-center gap-3.5 sm:gap-4 px-4 sm:px-8 py-2 border-r border-black/[0.07]">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D4852A]/15 text-[#D4852A] flex items-center justify-center shrink-0">
+              <Star size={16} className="fill-[#D4852A]" />
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#1A1209]">Rating</p>
-              <p className="text-[11px] sm:text-xs text-black/55 font-medium truncate">4.8/5 · 12k+ Reviews</p>
+              <p className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-[#1A1209]">Rating</p>
+              <p className="text-[11px] sm:text-sm text-black/55 font-medium truncate">4.8/5 · 12,000+ Reviews</p>
             </div>
           </div>
 
           {/* Segment 2: Heritage */}
-          <div className="flex-1 hidden sm:flex items-center gap-3 px-3.5 sm:px-5 py-1.5 border-r border-black/[0.07]">
-            <div className="w-8 h-8 rounded-full bg-[#D4852A]/15 text-[#D4852A] flex items-center justify-center shrink-0">
-              <Landmark size={15} />
+          <div className="flex-1 hidden sm:flex items-center gap-3.5 sm:gap-4 px-4 sm:px-8 py-2 border-r border-black/[0.07]">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D4852A]/15 text-[#D4852A] flex items-center justify-center shrink-0">
+              <Landmark size={16} />
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#1A1209]">Heritage</p>
-              <p className="text-[11px] sm:text-xs text-black/55 font-medium truncate">Since 1996</p>
+              <p className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-[#1A1209]">Heritage</p>
+              <p className="text-[11px] sm:text-sm text-black/55 font-medium truncate">Since 1996 · 29+ Yrs</p>
             </div>
           </div>
 
           {/* Segment 3: Food */}
-          <div className="flex-1 hidden md:flex items-center gap-3 px-3.5 sm:px-5 py-1.5 border-r border-black/[0.07]">
-            <div className="w-8 h-8 rounded-full bg-[#D4852A]/15 text-[#D4852A] flex items-center justify-center shrink-0">
-              <Utensils size={15} />
+          <div className="flex-1 hidden md:flex items-center gap-3.5 sm:gap-4 px-4 sm:px-8 py-2 border-r border-black/[0.07]">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D4852A]/15 text-[#D4852A] flex items-center justify-center shrink-0">
+              <Utensils size={16} />
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#1A1209]">Food</p>
-              <p className="text-[11px] sm:text-xs text-black/55 font-medium truncate">100% Vegetarian</p>
+              <p className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-[#1A1209]">Food</p>
+              <p className="text-[11px] sm:text-sm text-black/55 font-medium truncate">100% Pure Vegetarian</p>
             </div>
           </div>
 
           {/* Segment 4: Location */}
-          <div className="flex-1 flex items-center gap-3 px-3.5 sm:px-5 py-1.5">
-            <div className="w-8 h-8 rounded-full bg-[#D4852A]/15 text-[#D4852A] flex items-center justify-center shrink-0">
-              <MapPin size={15} />
+          <div className="flex-1 flex items-center gap-3.5 sm:gap-4 px-4 sm:px-8 py-2">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#D4852A]/15 text-[#D4852A] flex items-center justify-center shrink-0">
+              <MapPin size={16} />
             </div>
             <div className="min-w-0">
-              <p className="text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#1A1209]">Location</p>
-              <p className="text-[11px] sm:text-xs text-black/55 font-medium truncate">NH-8, Gurugram</p>
+              <p className="text-[11px] sm:text-xs font-extrabold uppercase tracking-wider text-[#1A1209]">Location</p>
+              <p className="text-[11px] sm:text-sm text-black/55 font-medium truncate">NH-8, Gurugram</p>
             </div>
           </div>
 
@@ -152,9 +152,9 @@ export function GodlyResortHero({ onBook, onExplore }: GodlyResortHeroProps) {
             type="button"
             onClick={onExplore}
             aria-label="Explore resort"
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#D4852A] hover:bg-[#B85C1A] text-white flex items-center justify-center shrink-0 shadow-md transition-transform hover:scale-105 active:scale-95 cursor-pointer ml-1 sm:ml-2"
+            className="w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-[#D4852A] hover:bg-[#B85C1A] text-white flex items-center justify-center shrink-0 shadow-md transition-transform hover:scale-105 active:scale-95 cursor-pointer ml-1 sm:ml-3"
           >
-            <Search size={17} strokeWidth={2.5} />
+            <Search size={19} strokeWidth={2.5} />
           </button>
         </div>
       </div>
